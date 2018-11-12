@@ -38,6 +38,7 @@ div {
 .c {
     grid-column: 4 / span 2;
     grid-row: 1 ;
+    background-color: rgb(19, 214, 65);
 }
 .d {
     grid-column: 6;
@@ -46,8 +47,64 @@ div {
 .e {
   grid-column: 7 / span 2 ;
   grid-row: 1;
+  background-color: rgb(32, 19, 226);
 }
 .f {
   grid-column: 1 / 9;
   grid-row: 2;
+  background-color: #999;
+}
+
+
+.wrapper2 {
+  display: grid;
+  width:80%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  grid-gap: 10px;
+  grid-template-columns: 300px 100px 100px;
+  background-color: #fff;
+  color: #444;
+}
+
+.row1 {
+  grid-row: 1;
+}
+.row2 {
+  grid-row: 2;
+}
+.row3 {
+  grid-row: 3;
+}
+.row4 {
+  grid-row: 4;
+}
+.row5 {
+  grid-row: 5;
+}
+
+.col1 {
+  grid-column: 1;
+}
+
+
+.col3 {
+  grid-column: 2/ span 2;
+}
+.check {
+  grid-column: 4;
+  grid-row: 2/4;
+  background-color: rgb(37, 23, 100);
+}
+
+.next {
+  grid-column: 4;
+  grid-row: 4/6;
+  background-color: rgb(39, 90, 52);
+}
+
+.selector{
+  cursor: pointer;
+
 }

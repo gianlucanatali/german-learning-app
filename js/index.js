@@ -25,6 +25,13 @@ var json = {"adj_praepos": [
 ]
 };
 
+var testJson;
+
+var answerJson={"adj_praepos": []};
+
+var currAnswer={"infinitiv": "", "praep": "", "casus": ""};
+var currElem={"infinitiv": "", "praep": "", "casus": ""};
+
 /**
  * Shuffles array in place.
  * @param {Array} a items An array containing the items.
@@ -52,16 +59,64 @@ function printArr(a){
     return str;
 }
 
-function printOne(a,i){
-    document.getElementById('infinitiv').innerHTML = a[i].infinitiv;
-    document.getElementById('praep').innerHTML = a[i].praep;
-    document.getElementById('casus').innerHTML = a[i].casus;
-    document.getElementById('beispiel').innerHTML = a[i].beispiel;
+function refreshElem(){
+    $('#infinitiv').html(currAnswer.infinitiv);
+    $('#praep').html(currAnswer.praep);
+    $('#casus').html(currAnswer.casus);
+    $('#beispiel').html(currAnswer.beispiel);
 }
 
-function getString(){
-    var arr=shuffle(json.adj_praepos)
-    printOne(arr,5);
+function init(){
+    testJson=shuffle(json.adj_praepos);
+    getNext();
+    refreshElem();
 }
 
-document.getElementById('text').innerHTML = getString();
+function getNext(){
+    currAnswer={"infinitiv": "", "praep": "", "casus": "", "beispiel":""};
+    currElem=testJson[pos];
+    currAnswer.infinitiv=currElem.infinitiv;
+    pos=pos+1;
+}
+
+init();
+
+$( "div.col3" ).on('click', selectCasus);
+$( "div.col1" ).on('click', selectPraep);
+$( "div.check" ).on('click', submitAnswer);
+$( "div.next" ).on('click', next);
+
+function selectCasus() {
+    currAnswer.casus=this.innerHTML;
+    refreshElem();
+};
+
+function selectPraep() {
+    currAnswer.praep=this.innerHTML;
+    refreshElem();
+};
+
+function submitAnswer(){
+    if(!checkAnswer()){
+        alert("Wrong answer!");
+    }else{
+       currAnswer.beispiel=currElem.beispiel;
+        refreshElem();
+    }
+    
+    
+}
+
+function next(){
+
+    getNext();
+    refreshElem();
+    
+}
+
+function checkAnswer(){
+    var testA=currAnswer.infinitiv===currElem.infinitiv;
+    var testB=currAnswer.casus===currElem.casus;
+    var testC=currAnswer.praep===currElem.praep;
+    return testA&&testB&&testC;
+}
