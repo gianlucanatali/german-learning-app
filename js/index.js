@@ -1,6 +1,38 @@
 var arr;
 var pos=0;
 
+var praepList=["auf","über","bei","mit","gegenüber","als","für","vor","an","gegen","nach"];
+
+
+var testJson;
+
+var answerJson={"adj_praepos": []};
+
+var currAnswer={"infinitiv": "", "praep": "", "casus": ""};
+var currElem={"infinitiv": "", "praep": "", "casus": ""};
+
+$(document).ready(function(){
+    init();
+
+    $( "div.col3" ).on('click', selectCasus);
+    $( "div.col1" ).on('click', selectPraep);
+    $( "div.check" ).on('click', submitAnswer);
+    $( "div.next" ).on('click', next);
+    createPraep();
+});
+
+function createPraep(){
+    var arrayLength = praepList.length;
+    var html='';
+    for (var i = 0; i < arrayLength; i++) {
+        html += "<div class='box selector col1 row"+(i+2)+"'>"+ praepList[i] +"</div>"
+    }
+
+    $('.wrapper2').append(html);
+}
+
+
+
 var json = {"adj_praepos": [
     {"infinitiv": "aufgeschlossen sein", "praep": "gegenüber", "casus": "DAT","beispiel": "Der Kollege ist auch Kritik gegenüber aufgeschlossen"},
     {"infinitiv": "bekannt sein", "praep": "als", "casus": "NOM","beispiel": "Der Autor ist als Kämpfer für den Frieden überall bekannt"},
@@ -25,12 +57,6 @@ var json = {"adj_praepos": [
 ]
 };
 
-var testJson;
-
-var answerJson={"adj_praepos": []};
-
-var currAnswer={"infinitiv": "", "praep": "", "casus": ""};
-var currElem={"infinitiv": "", "praep": "", "casus": ""};
 
 /**
  * Shuffles array in place.
@@ -79,22 +105,17 @@ function getNext(){
     pos=pos+1;
 }
 
-init();
 
-$( "div.col3" ).on('click', selectCasus);
-$( "div.col1" ).on('click', selectPraep);
-$( "div.check" ).on('click', submitAnswer);
-$( "div.next" ).on('click', next);
 
 function selectCasus() {
     currAnswer.casus=this.innerHTML;
     refreshElem();
-};
+}
 
 function selectPraep() {
     currAnswer.praep=this.innerHTML;
     refreshElem();
-};
+}
 
 function submitAnswer(){
     if(!checkAnswer()){
