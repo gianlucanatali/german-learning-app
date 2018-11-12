@@ -96,6 +96,7 @@ function init(){
     testJson=shuffle(json.adj_praepos);
     getNext();
     refreshElem();
+    praepList.sort()
 }
 
 function getNext(){
