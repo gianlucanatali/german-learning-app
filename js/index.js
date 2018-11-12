@@ -13,12 +13,12 @@ var currElem={"infinitiv": "", "praep": "", "casus": ""};
 
 $(document).ready(function(){
     init();
-
+    
     $( "div.col3" ).on('click', selectCasus);
     $( "div.col1" ).on('click', selectPraep);
     $( "div.check" ).on('click', submitAnswer);
     $( "div.next" ).on('click', next);
-    createPraep();
+   
 });
 
 function createPraep(){
@@ -96,7 +96,8 @@ function init(){
     testJson=shuffle(json.adj_praepos);
     getNext();
     refreshElem();
-    praepList.sort()
+    praepList.sort();
+    createPraep();
 }
 
 function getNext(){
