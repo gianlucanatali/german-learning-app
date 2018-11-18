@@ -104,6 +104,12 @@ div {
   background-color: rgb(39, 90, 52);
 }
 
+.answer {
+  grid-column: 4;
+  grid-row: 6/8;
+  background-color: rgb(255, 90, 52);
+}
+
 .selector{
   cursor: pointer;
 

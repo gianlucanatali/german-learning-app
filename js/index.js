@@ -13,12 +13,13 @@ var currElem={"infinitiv": "", "praep": "", "casus": ""};
 
 $(document).ready(function(){
     init();
-    
+
     $( "div.col3" ).on('click', selectCasus);
     $( "div.col1" ).on('click', selectPraep);
     $( "div.check" ).on('click', submitAnswer);
     $( "div.next" ).on('click', next);
-   
+    $( "div.answer" ).on('click', getAnswer);
+
 });
 
 function createPraep(){
@@ -107,6 +108,14 @@ function getNext(){
     pos=pos+1;
 }
 
+function getAnswer(){
+    currAnswer.beispiel=currElem.beispiel;
+    currAnswer.infinitiv=currElem.infinitiv;
+    currAnswer.praep=currElem.praep;
+    currAnswer.casus=currElem.casus;
+    refreshElem();
+}
+
 
 
 function selectCasus() {
@@ -124,17 +133,17 @@ function submitAnswer(){
         alert("Wrong answer!");
     }else{
        currAnswer.beispiel=currElem.beispiel;
-        refreshElem();
+       refreshElem();
     }
-    
-    
+
+
 }
 
 function next(){
 
     getNext();
     refreshElem();
-    
+
 }
 
 function checkAnswer(){
